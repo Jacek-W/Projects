@@ -1,0 +1,29 @@
+namespace Solution
+{
+  using System;
+  using System.Linq;
+
+  class Kata
+    {
+    public static int find_it(int[] seq) 
+      {
+        int expand = Math.Abs(seq.Min());                   //the expander so all the elements (negative and positive) fit into the array
+        int[] oddMatrix = new int[seq.Max() + expand + 1];
+        
+        foreach(int ele in seq)
+        {
+          oddMatrix[ele + expand] += 1;        //we are giving +1 on specified index that is the number we are checking from the array given
+          if(oddMatrix[ele + expand] == 2)     // when there was already 1 we are taking that to zero
+          {
+            oddMatrix[ele + expand] = 0;  
+          }
+        }
+         int maxValue = oddMatrix.Max();                      // in the end the array's values are zeros and one "1", which is the numer that appears odd times in the array
+         int maxIndex = oddMatrix.ToList().IndexOf(maxValue); // we are getting the index of that "1"
+                                                              // that index is the number we are looking for magnified by the absolute value of the lowest number from the array
+        return maxIndex - expand;
+        
+      }
+       
+    }
+}
