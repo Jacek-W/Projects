@@ -1,0 +1,28 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public static class Kata
+{
+  public static string Order(string words)
+  {
+    
+    if(String.IsNullOrEmpty(words))                   //checking if string words is empty or null
+    {
+      return words;
+    }
+    string[] arrayWords = words.Split(' ');
+    string[] tempArray = new string[arrayWords.Length];
+    int number;
+    string resultString;
+    foreach(string word in arrayWords)
+    {
+      resultString = Regex.Match(word, @"\d+").Value;  //getting the digit from the string word which is a part of a words
+      number = Int32.Parse(resultString);              // saving a digit to int number
+      tempArray[number-1] = word;
+      
+    }
+    words = string.Join(" ", tempArray);              
+    return words;
+  }
+}
