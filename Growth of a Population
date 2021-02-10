@@ -1,0 +1,16 @@
+using System;
+using static System.Math;
+
+class Arge {
+    
+    public static int NbYear(int p0, double percent, int aug, int p) {
+     
+      int n=0;
+      double pTemp = p0;
+      while( pTemp < p){
+        n++;
+        pTemp += Floor(percent * pTemp / 100 + Convert.ToDouble(aug));
+      }
+      return n;
+    }
+}
